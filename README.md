@@ -1,2 +1,1 @@
-# cli-calc-py
-A lightweight, extensible Command Line Interface (CLI) calculator built in Python utilizing a dictionary-based dispatch pattern for clean arithmetic operations.
+A lightweight, robust Command Line Interface (CLI) calculator. This project demonstrates input validation, error handling, and the dictionary-based dispatch pattern to perform arithmetic operations without messy nested conditionals.
