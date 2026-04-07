@@ -38,6 +38,20 @@ def calculated(number_1, chosen, number_2):
         case "+":
             total_calculated = number_1 + number_2
             print(f"{number_1} {chosen} {number_2}= {total_calculated}")
+        case "-":
+            total_calculated = number_1 - number_2
+            print(f"{number_1} {chosen} {number_2}= {total_calculated}")
+        case "*":
+            total_calculated = number_1 * number_2
+            print(f"{number_1} {chosen} {number_2}= {total_calculated}")
+        case "/":
+            total_calculated = number_1 / number_2
+            print(f"{number_1} {chosen} {number_2}= {total_calculated}")
+
+
+num_1=""
+num_2=""
+chosen=""
 
 while calculate:
     while True:
@@ -62,23 +76,23 @@ while calculate:
         num_2 = input("Insert the second number: ")
         try:
             num_2 = float(num_2)
-            print(calculated(num_1, num_2, chosen))
+            calculated(num_1, chosen, num_2)
             break
         except ValueError:
             print("Please enter numerical only!")
 
 
-        shall = True
-        proceed = input("Shall we continue? Yes or no: ").lower()
-        while shall:
-            match proceed:
-                case "yes":
-                    calculate = True
-                    break
-                case "no":
-                    calculate = False
-                    break
-                case _:
-                    print("Not on the list!")
-                    proceed = input("Shall we continue? Yes or no: ").lower()
+    shall = True
+    proceed = input("Shall we continue? Yes or no: ").lower()
+    while shall:
+        match proceed:
+            case "yes":
+                calculate = True
+                break
+            case "no":
+                calculate = False
+                break
+            case _:
+                print("Not on the list!")
+                proceed = input("Shall we continue? Yes or no: ").lower()
 
