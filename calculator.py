@@ -95,4 +95,3 @@ while calculate:
             case _:
                 print("Not on the list!")
                 proceed = input("Shall we continue? Yes or no: ").lower()
-
