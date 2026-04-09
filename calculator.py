@@ -1,23 +1,12 @@
-def add(n1, n2):
-    print("This is addition")
-    return n1 + n2
-def subtract(n1, n2):
-    print("This is subtraction")
-    return n1 - n2
-def multiply(n1, n2):
-    print("This is multiplication")
-    return n1 * n2
-def division(n1, n2):
-    print("This is division")
-    return n1 / n2
-
-operands = {
-    "+": add,
-    "-": subtract,
-    "*": multiply,
-    "/": division,
+# dictionary for operation
+operations = {
+    "+": lambda a,b: a + b,
+    "-": lambda a,b: a - b,
+    "*": lambda a,b: a * b,
+    "/": lambda a,b: a / b,
 }
 
+# instruction display
 print("""
 Welcome to CLI Calculator here is a list of operand this calculator can work:
 + for addition
@@ -26,72 +15,48 @@ Welcome to CLI Calculator here is a list of operand this calculator can work:
 / for division
 """)
 
+# start of the calculator
 calculate = True
-
-def operand():
-    operando = input("Enter an operand to the given actions: ")
-    return operando
-
-def calculated(number_1, chosen, number_2):
-    # variable for total calculations
-    match chosen:
-        case "+":
-            total_calculated = number_1 + number_2
-            print(f"{number_1} {chosen} {number_2}= {total_calculated}")
-        case "-":
-            total_calculated = number_1 - number_2
-            print(f"{number_1} {chosen} {number_2}= {total_calculated}")
-        case "*":
-            total_calculated = number_1 * number_2
-            print(f"{number_1} {chosen} {number_2}= {total_calculated}")
-        case "/":
-            total_calculated = number_1 / number_2
-            print(f"{number_1} {chosen} {number_2}= {total_calculated}")
-
-
-num_1=""
-num_2=""
-chosen=""
 
 while calculate:
     while True:
-        # get the first number
-        num_1 = input("Insert first number here: ")
+        raw_sign = input("Input operation here: ")
+        try:
+            operation = operations[raw_sign]
+            break
+        except KeyError:
+            print("Nah uh")
+
+    while True:
+        num_1 = input("Enter your first number here: ")
         try:
             num_1 = float(num_1)
             break
         except ValueError:
-            print("Please enter numerical only!")
-
-    while True:
-        # get what the user want to operand to execute
-        chosen = operand()
-        # check if the chosen operand exists in the dictionary
-        if chosen in operands:
-            break
-        else:
             print("Nah uh")
 
     while True:
-        num_2 = input("Insert the second number: ")
+        num_2 = input("Enter your second number here: ")
         try:
             num_2 = float(num_2)
-            calculated(num_1, chosen, num_2)
             break
         except ValueError:
-            print("Please enter numerical only!")
+            print("Nah uh")
 
+    total = f"{num_1} {raw_sign} {num_2} = {operation(num_1,num_2)} "
+    print(total)
 
-    shall = True
-    proceed = input("Shall we continue? Yes or no: ").lower()
-    while shall:
-        match proceed:
-            case "yes":
-                calculate = True
-                break
-            case "no":
-                calculate = False
-                break
-            case _:
-                print("Not on the list!")
-                proceed = input("Shall we continue? Yes or no: ").lower()
+    while True:
+        proceed = input("Shall we proceed? yes or no: ").lower()
+        if proceed == "y":
+            print("Let's go!")
+        elif proceed == "yes":
+            print("Let's go!")
+        elif proceed == "n":
+            print("Bye!")
+            break
+        elif proceed == "no":
+            print("Bye!")
+            break
+
+    calculate = False
