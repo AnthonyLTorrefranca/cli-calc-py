@@ -1,67 +1,58 @@
-# dictionary for operation
+# dictionary of operations
 operations = {
     "+": lambda a,b: a + b,
     "-": lambda a,b: a - b,
     "*": lambda a,b: a * b,
     "/": lambda a,b: a / b,
 }
-# instruction display
+# List of operations that will work
 print("""
-Welcome to CLI Calculator here is a list of operand this calculator can work:
-+ for addition
-- for subtraction
-* for multiplication
-/ for division
+Welcome to the CLI Calculator
+where we calculate things up,
+The following is the corresponding operations,
+'+' for addition,
+'-' for subtraction, 
+'*' for multiplication,
+ and for  '/' division.
 """)
-# start of the calculator
+# calculator handler
 calculate = True
 while calculate:
+    # ask user for operation
     while True:
+        raw_sign = input("Enter your desired operation: ")
         try:
-            raw_sign = input("Enter valid operation here: ")
             operation = operations[raw_sign]
             break
         except KeyError:
-            print("Enter valid operation!")
-    # first number here
+            print("Pls enter valid operation!")
+    # user input 1
     while True:
+        num_1 = input("Enter first number here: ")
         try:
-            num_1 = input("Input your first number here: ")
             num_1 = float(num_1)
             break
         except ValueError:
             print("Enter numerics only!")
-    # second number here
+    # user input 2
     while True:
+        num_2 = input("Enter second number here: ")
         try:
-            f_num_2 = input("Input your second number here: ")
-            num_2 = float(f_num_2)
+            num_2 = float(num_2)
             break
         except ValueError:
             print("Enter numerics only!")
-    # zero division handler
     try:
-        total = f"{num_1} {raw_sign} {num_2} = {operation(num_1, num_2)}"
+        total = f"{num_1} {raw_sign} {num_2} = {operation(num_1, num_2)} "
         print(total)
     except ZeroDivisionError:
-        print(f"{num_1} cannot be divided to {f_num_2}\n")
-    # asks if the user wants to proceed
+        print(f"{num_1} not divisible by {num_2}")
     while calculate:
-        proceed = input("Shall we proceed? yes or no ")
+        proceed = input("Shall we proceed? yes or no ").lower()
         match proceed:
             case "yes":
                 break
             case "no":
                 calculate = False
-                break
             case _:
                 print("Unknown response!")
-
-
-
-
-
-
-
-
-
