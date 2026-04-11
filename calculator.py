@@ -5,7 +5,6 @@ operations = {
     "*": lambda a,b: a * b,
     "/": lambda a,b: a / b,
 }
-
 # instruction display
 print("""
 Welcome to CLI Calculator here is a list of operand this calculator can work:
@@ -14,49 +13,55 @@ Welcome to CLI Calculator here is a list of operand this calculator can work:
 * for multiplication
 / for division
 """)
-
 # start of the calculator
 calculate = True
-
 while calculate:
     while True:
-        raw_sign = input("Input operation here: ")
         try:
+            raw_sign = input("Enter valid operation here: ")
             operation = operations[raw_sign]
             break
         except KeyError:
-            print("Nah uh")
-
+            print("Enter valid operation!")
+    # first number here
     while True:
-        num_1 = input("Enter your first number here: ")
         try:
+            num_1 = input("Input your first number here: ")
             num_1 = float(num_1)
             break
         except ValueError:
-            print("Nah uh")
-
+            print("Enter numerics only!")
+    # second number here
     while True:
-        num_2 = input("Enter your second number here: ")
         try:
-            num_2 = float(num_2)
+            f_num_2 = input("Input your second number here: ")
+            num_2 = float(f_num_2)
             break
         except ValueError:
-            print("Nah uh")
+            print("Enter numerics only!")
+    # zero division handler
+    try:
+        total = f"{num_1} {raw_sign} {num_2} = {operation(num_1, num_2)}"
+        print(total)
+    except ZeroDivisionError:
+        print(f"{num_1} cannot be divided to {f_num_2}\n")
+    # asks if the user wants to proceed
+    while calculate:
+        proceed = input("Shall we proceed? yes or no ")
+        match proceed:
+            case "yes":
+                break
+            case "no":
+                calculate = False
+                break
+            case _:
+                print("Unknown response!")
 
-    total = f"{num_1} {raw_sign} {num_2} = {operation(num_1,num_2)} "
-    print(total)
 
-    while True:
-        proceed = input("Shall we proceed? yes or no: ").lower()
-        if proceed == "y":
-            print("Let's go!")
-        elif proceed == "yes":
-            print("Let's go!")
-        elif proceed == "n":
-            print("Bye!")
-            break
-        elif proceed == "no":
-            print("Bye!")
-            break
 
-    calculate = False
+
+
+
+
+
+
