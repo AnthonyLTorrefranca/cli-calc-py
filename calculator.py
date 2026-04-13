@@ -5,7 +5,6 @@ operations = {
     "*": lambda a,b: a * b,
     "/": lambda a,b: a / b,
 }
-# List of operations that will work
 print("""
 Welcome to the CLI Calculator
 where we calculate things up,
@@ -17,38 +16,39 @@ The following is the corresponding operations,
 """)
 # calculator handler
 calculate = True
+
 while calculate:
-    # ask user for operation
     while True:
-        raw_sign = input("Enter your desired operation: ")
+    # ask user for operation
+        raw = input("Enter your desired operation: ")
         try:
-            operation = operations[raw_sign]
+            operation = operations[raw]
             break
         except KeyError:
-            print("Pls enter valid operation!")
-    # user input 1
+            print("Enter valid operation only!")
     while True:
-        num_1 = input("Enter first number here: ")
+        # user input 1
+        num_1 = input("Enter your first number here: ")
         try:
             num_1 = float(num_1)
             break
         except ValueError:
             print("Enter numerics only!")
-    # user input 2
     while True:
-        num_2 = input("Enter second number here: ")
+        # user input 2
+        num_2 = input("Enter your second number here: ")
         try:
             num_2 = float(num_2)
             break
         except ValueError:
             print("Enter numerics only!")
     try:
-        total = f"{num_1} {raw_sign} {num_2} = {operation(num_1, num_2)} "
+        total = f"{num_1} {raw} {num_2} = {operation(num_1,num_2)}"
         print(total)
     except ZeroDivisionError:
-        print(f"{num_1} not divisible by {num_2}")
+        print(f"Zero division error! {num_1} cannot be divided to {num_2}!")
     while calculate:
-        proceed = input("Shall we proceed? yes or no ").lower()
+        proceed = input("Shall we proceed? Yes or no only: ").lower()
         match proceed:
             case "yes":
                 break
