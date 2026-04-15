@@ -1,10 +1,4 @@
 # dictionary of operations
-operations = {
-    "+": lambda a,b: a + b,
-    "-": lambda a,b: a - b,
-    "*": lambda a,b: a * b,
-    "/": lambda a,b: a / b,
-}
 print("""
 Welcome to the CLI Calculator
 where we calculate things up,
@@ -15,8 +9,13 @@ The following is the corresponding operations,
  and for  '/' division.
 """)
 # calculator handler
+operations = {
+    "+": lambda a,b: a + b,
+    "-": lambda a,b: a - b,
+    "*": lambda a,b: a * b,
+    "/": lambda a,b: a / b,
+}
 calculate = True
-
 while calculate:
     while True:
     # ask user for operation
@@ -51,6 +50,7 @@ while calculate:
         proceed = input("Shall we proceed? Yes or no only: ").lower()
         match proceed:
             case "yes":
+                print("\n")
                 break
             case "no":
                 calculate = False
